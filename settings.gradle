@@ -1,0 +1,6 @@
+rootProject.name = 'ad-scrapper'
+include 'scrapper-api'
+include 'scrapper'
+include 'allegro-lokalnie-scrapper'
+include 'olx-scrapper'
+

@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'io.javafaktura.spring.boot'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':scrapper-api')
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.12.1'
+    compile group: 'org.springframework', name: 'spring-context', version: '5.2.0.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

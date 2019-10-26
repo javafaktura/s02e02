@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group 'io.javafaktura.spring.boot'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'io.javafaktura.spring.boot.scrapper.app.ScrapperApplication'
+    }
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'io.javafaktura.spring.boot.scrapper.app.ScrapperApplication'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+dependencies {
+    compile project(':olx-scrapper'),
+            project(':allegro-lokalnie-scrapper')
+    compile group: 'org.springframework', name: 'spring-context', version: '5.2.0.RELEASE'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
