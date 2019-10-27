@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id "org.springframework.boot" version "2.2.0.RELEASE"
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
 
 group 'io.javafaktura.spring.boot'
@@ -33,9 +34,13 @@ task fatJar(type: Jar) {
 }
 
 dependencies {
-    compile project(':olx-scrapper'),
+    implementation project(':olx-scrapper'),
             project(':allegro-lokalnie-scrapper')
-    compile group: 'org.springframework', name: 'spring-context', version: '5.2.0.RELEASE'
+
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.2.0.RELEASE'
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
