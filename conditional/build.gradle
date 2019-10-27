@@ -12,9 +12,6 @@ repositories {
 }
 
 dependencies {
-    compile project(':scrapper-api')
-    compile project(':conditional')
-    compile group: 'org.jsoup', name: 'jsoup', version: '1.12.1'
-    compile group: 'org.springframework', name: 'spring-context', version: '5.2.0.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure:2.2.0.RELEASE'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
