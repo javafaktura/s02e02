@@ -8,6 +8,9 @@ import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -30,6 +33,17 @@ public class AllegroScrapper implements Scrapper {
 
     public AllegroScrapper(@Value("${allegro.fetch-size}") int fetchSize) {
         this.fetchSize = fetchSize;
+        checkAllegro();
+    }
+
+    private void checkAllegro() {
+        try {
+            try (Socket socket = new Socket()) {
+                socket.connect(new InetSocketAddress("allegrolokalnie.pl", 443), 1000);
+            }
+        } catch (IOException exception) {
+            throw new UnableToSetupAllegroException("Allegro lokalnie is not available", exception);
+        }
     }
 
     @Override
